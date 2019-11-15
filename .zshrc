@@ -104,6 +104,8 @@ alias todo="vim -o ~/{todo,progress,done}"
 eval "$(rbenv init -)"
 
 alias be="bundle exec"
+alias ta="tmux attach -t"
+alias tk="tmux kill-session -t"
 
 # mysql
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
