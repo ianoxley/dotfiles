@@ -206,3 +206,8 @@ export GPG_TTY
 export PATH="/usr/local/opt/curl/bin:$PATH"
 
 source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
+
+# Load secrets.sh from the home directory if it exists
+if [ -e ~/.secrets.sh ]; then
+  source ~/.secrets.sh
+fi
