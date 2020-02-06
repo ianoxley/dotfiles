@@ -106,6 +106,8 @@ eval "$(rbenv init -)"
 alias be="bundle exec"
 alias ta="tmux attach -t"
 alias tk="tmux kill-session -t"
+# Clear the screen and scroll-back - like Cmd+K in iTerm
+alias clear="clear && printf '\e[3J'"
 
 # mysql
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
