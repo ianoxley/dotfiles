@@ -53,3 +53,5 @@
 	tool = vimdiff
 [init]
 	templatedir = ~/.git_template
+[fetch]
+  prune = true
