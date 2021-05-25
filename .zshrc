@@ -213,3 +213,6 @@ source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 if [ -e ~/.secrets.sh ]; then
   source ~/.secrets.sh
 fi
+
+# Ruby OpenSSL config
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
