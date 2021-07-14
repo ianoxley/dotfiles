@@ -3,7 +3,7 @@ SESSION=`basename $PWD`
 
 tmux -2 new-session -d -s $SESSION
 
-tmux rename-window -t $SESSION:0 vim
+tmux rename-window -t $SESSION:0 $SESSION
 tmux split-window -h
 tmux select-pane -t 0
 tmux resize-pane -L 30
