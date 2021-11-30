@@ -1,9 +1,25 @@
-;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
+;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Place your private configuration here
+;; Place your private configuration here! Remember, you do not need to run 'doom
+;; sync' after modifying this file!
+
+;; Some functionality uses this to identify you, e.g. GPG configuration, email
+;; clients, file templates and snippets.
+(setq user-full-name "Ian Oxley"
+      user-mail-address "ijoxley@gmail.com")
+
 (setq doom-font (font-spec :family "Ubuntu Mono" :size 20))
 (setq-default mac-command-modifier 'meta)
 (setq-default mac-option-modifier nil)
+
+;; There are two ways to load a theme. Both assume the theme is installed and
+;; available. You can either set `doom-theme' or manually load a theme with the
+;; `load-theme' function. This is the default:
+(setq doom-theme 'doom-one)
+
+;; This determines the style of line numbers in effect. If set to `nil', line
+;; numbers are disabled. For relative line numbers, set this to `relative'.
+(setq display-line-numbers-type 'relative)
 
 (use-package! org
   :config
@@ -39,14 +55,17 @@
   (setq org-columns-default-format "%40ITEM(Task) %17Effort(Estimated Effort){:} %CLOCKSUM")
 
   (custom-set-variables
+    '(org-agenda-show-all-dates t)
     '(org-agenda-skip-deadline-if-done t)
     '(org-agenda-skip-scheduled-if-done t)
+    '(org-deadline-warning-days 14)
     '(org-reverse-note-order t)
     ))
 
 (setq
  auto-mode-alist (append '(("Dockerfile.*\\'" . dockerfile-mode)) auto-mode-alist)
  projectile-project-search-path '("~/dev/" "~/play"))
+(setq display-line-numbers 'relative)
 
 ; (def-package! org-super-agenda
 ;   :after org-agenda
