@@ -50,6 +50,7 @@
   show-files = diff-tree --no-commit-id --name-only -r
 	mylog = !git log --author=\"$(git config user.name)\"
 [merge]
+  conflictStyle = zdiff3
 	tool = vimdiff
 [init]
 	templatedir = ~/.git_template
