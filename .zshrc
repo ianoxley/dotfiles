@@ -131,12 +131,6 @@ source /usr/local/etc/bash_completion.d/aws_bash_completer
 # grep
 export GREP_OPTIONS='--color=always'
 
-# sage one localhost env vars
-export MYSQL_USERNAME=ian
-export MYSQL_PASSWORD=V7Fr3KcPKyKGawJUxHoR
-export ENABLE_DEV_LOGIN=true
-export ADDONS_REGION=ukie
-
 # docker
 function docker_start() {
   # docker-machine start default
