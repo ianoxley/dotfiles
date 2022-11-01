@@ -143,6 +143,10 @@ function npm-install-local {
   npm install $(npm pack $1 | tail -1)
 }
 
+function realpath() {
+    [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+}
+
 # fzf
 if [ -e /usr/local/opt/fzf/shell/completion.zsh ]; then
   # source /usr/local/opt/fzf/shell/key-bindings.bash
