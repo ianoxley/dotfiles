@@ -131,24 +131,8 @@ source /usr/local/etc/bash_completion.d/aws_bash_completer
 # grep
 export GREP_OPTIONS='--color=always'
 
-# docker
-function docker_start() {
-  # docker-machine start default
-  # docker-machine env
-  # eval "$(docker-machine env default)"
-  unset DOCKER_TLS_VERIFY
-  unset DOCKER_CERT_PATH
-  unset DOCKER_MACHINE_NAME
-  unset DOCKER_HOST
-  eval "$(aws ecr get-login --region eu-west-1 --no-include-email)"
-}
-
-function docker_login() {
-  eval $(docker_login_cmd)
-}
-
-function docker_login_cmd() {
-  aws ecr get-login --region eu-west-1 --no-include-email
+function aws_login() {
+  aws ecr get-login-password | docker login --username AWS --password-stdin ${AWS_ECR_ACCOUNT_ID}.dkr.ecr.${AWS_ECR_ACCOUNT_REGION}.amazonaws.com
 }
 
 # 2019-02-15 The file below doens't exist, not sure if it should or not?
