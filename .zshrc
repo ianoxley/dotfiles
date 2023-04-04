@@ -198,3 +198,9 @@ fi
 
 # Ruby OpenSSL config
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
+# Override the prompt to replace user@host with random emoji
+emojis=("⚡️" "🔥" "💀" "🐳" "🤯" "🪐" "🙈" "🦄" "🌈" "🧲" "🚀" "💡" "🎉" "🔑" "🚦" "🌙" "📡")
+RAND_EMOJI_N=$(( $RANDOM % ${#emojis[@]} + 1))
+PROMPT="╭─${emojis[$RAND_EMOJI_N]} ${current_dir}${rvm_ruby}${vcs_branch}${venv_prompt}
+╰─%B${user_symbol}%b "
