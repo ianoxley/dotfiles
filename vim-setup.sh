@@ -16,3 +16,15 @@ git clone git@github.com:tpope/vim-unimpaired.git vim-unimpaired
 cd ~/.vim/pack/other/opt
 git clone https://github.com/junegunn/goyo.vim.git goyo.vim
 git clone git@github.com:vimwiki/vimwiki.git vimwiki
+
+cd ~/.vim/pack/syntax/start
+git clone https://github.com/autozimu/LanguageClient-neovim.git LanguageClient-neovim
+git clone https://github.com/jiangmiao/auto-pairs.git auto-pairs
+git clone git@github.com:tomtom/tcomment_vim.git tcomment_vim
+git clone git@github.com:tpope/vim-endwise.git vim-endwise
+git clone git@github.com:terryma/vim-expand-region.git vim-expand-region
+git clone https://github.com/pangloss/vim-javascript.git vim-javascript
+git clone https://github.com/mxw/vim-jsx.git vim-jsx
+git clone git@github.com:vim-ruby/vim-ruby.git vim-ruby
+git clone git@github.com:honza/vim-snippets.git vim-snippets
+git clone https://github.com/tpope/vim-surround.git vim-surround
