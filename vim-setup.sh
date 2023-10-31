@@ -12,3 +12,7 @@ git clone git@github.com:preservim/nerdtree.git nerdtree
 git clone git@github.com:tpope/vim-fugitive.git vim-fugitive
 git clone git@github.com:jamessan/vim-gnupg.git vim-gnupg
 git clone git@github.com:tpope/vim-unimpaired.git vim-unimpaired
+
+cd ~/.vim/pack/other/opt
+git clone https://github.com/junegunn/goyo.vim.git goyo.vim
+git clone git@github.com:vimwiki/vimwiki.git vimwiki
