@@ -28,3 +28,6 @@ git clone https://github.com/mxw/vim-jsx.git vim-jsx
 git clone git@github.com:vim-ruby/vim-ruby.git vim-ruby
 git clone git@github.com:honza/vim-snippets.git vim-snippets
 git clone https://github.com/tpope/vim-surround.git vim-surround
+
+cd ~/.vim/pack/syntax/opt
+git clone https://github.com/kchmck/vim-coffee-script.git vim-coffee-script
