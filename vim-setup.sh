@@ -31,3 +31,8 @@ git clone https://github.com/tpope/vim-surround.git vim-surround
 
 cd ~/.vim/pack/syntax/opt
 git clone https://github.com/kchmck/vim-coffee-script.git vim-coffee-script
+
+cd ~/.vim/pack/themes/opt
+git clone https://github.com/lifepillar/vim-solarized8.git vim-solarized8
+git clone git@github.com:altercation/vim-colors-solarized.git vim-colors-solarized
+git clone git@github.com:vim-scripts/wombat256.vim.git wombat256mod
