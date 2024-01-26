@@ -108,6 +108,7 @@ alias ta="tmux attach -t"
 alias tk="tmux kill-session -t"
 # Clear the screen and scroll-back - like Cmd+K in iTerm
 alias clear="clear && printf '\e[3J'"
+alias vim=nvim
 
 # mysql
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
@@ -198,6 +199,11 @@ fi
 
 # Ruby OpenSSL config
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Override the prompt to replace user@host with random emoji
 emojis=("⚡️" "🔥" "💀" "🐳" "🤯" "🪐" "🙈" "🦄" "🌈" "🧲" "🚀" "💡" "🎉" "🔑" "🚦" "🌙" "📡")
