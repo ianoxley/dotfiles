@@ -99,6 +99,14 @@
   (org-roam-db-autosync-mode)
   (org-roam-setup))
 
+(use-package! org-agenda
+  :config
+  (setq org-agenda-skip-scheduled-if-done t
+        org-agenda-skip-deadline-if-done t
+        org-agenda-skip-scheduled-if-deadline-is-shown t
+        org-agenda-span 'day
+        org-agenda-start-day nil))
+
 (use-package! org-roam-ui
   :hook (after-init . org-roam-ui-mode)
   :config
