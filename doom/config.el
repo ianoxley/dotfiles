@@ -75,6 +75,8 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+(map! "M-3" '(lambda () (interactive) (insert "#")))
+
 (use-package! projectile
   :config
   (setq projectile-project-search-path '("~/dev" "~/play")))
