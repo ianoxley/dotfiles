@@ -119,9 +119,11 @@
   :after org-agenda
   :init
   (setq org-super-agenda-groups '((:name "Today"
+                                         :auto-group t
                                          :time-grid t
                                          :scheduled today)
                                   (:name "Due Today"
+                                         :auto-group t
                                          :deadline today)
                                   (:name "Important"
                                          :tag ("family" "bills" "money")
@@ -132,5 +134,8 @@
                                          :deadline future)
                                   (:name "Goals"
                                          :tag "goals")))
+  :bind (:map org-super-agenda-header-map
+              ("j" . #'org-agenda-next-line)
+              ("k" . #'org-agenda-previous-line))
   :config
   (org-super-agenda-mode))
