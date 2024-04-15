@@ -154,3 +154,9 @@
          ("\\.tsx\\'" . tsx-ts-mode))
   :config
   (add-hook! '(typescript-ts-mode-hook tsx-ts-mode-hook) #'lsp!))
+
+(use-package! org-crypt
+  :config
+  (org-crypt-use-before-save-magic)
+  (setq org-tags-exclude-from-inheritance (quote ("crypt"))
+        org-crypt-key nil))
