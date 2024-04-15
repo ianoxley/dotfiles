@@ -77,9 +77,14 @@
 ;; they are implemented.
 (map! "M-3" '(lambda () (interactive) (insert "#")))
 
+(use-package! helm
+  :config
+  (helm-mode 1))
+
 (use-package! projectile
   :config
-  (setq projectile-project-search-path '("~/dev" "~/play")))
+  (setq projectile-completion-system 'helm
+        projectile-project-search-path '("~/dev" "~/play")))
 
 (use-package! org-roam
   :ensure t
