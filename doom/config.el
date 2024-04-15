@@ -124,11 +124,9 @@
   :after org-agenda
   :init
   (setq org-super-agenda-groups '((:name "Today"
-                                         :auto-group t
                                          :time-grid t
                                          :scheduled today)
                                   (:name "Due Today"
-                                         :auto-group t
                                          :deadline today)
                                   (:name "Important"
                                          :tag ("family" "bills" "money")
