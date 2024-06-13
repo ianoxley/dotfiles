@@ -19,6 +19,10 @@ return require('packer').startup(function(use)
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
   use 'nvim-treesitter/nvim-treesitter'
+  use 'tpope/vim-fugitive'
+  use 'tpope/vim-unimpaired'
+  use 'tpope/vim-surround'
+  use 'jiangmiao/auto-pairs'
   use {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.8',
@@ -27,6 +31,11 @@ return require('packer').startup(function(use)
   use {
     'nvim-telescope/telescope-fzf-native.nvim',
     run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+  }
+  use {
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'neovim/nvim-lspconfig'
   }
   -- use {
   --   'nvim-telescope/telescope',
