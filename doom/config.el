@@ -55,6 +55,7 @@
 ;; change `org-directory'. It must be set before org loads!
 ;; (setq org-directory "~/org/")
 (setq org-directory "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org")
+(add-hook 'org-mode-hook #'bug-reference-mode)
 
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
@@ -90,27 +91,27 @@
 ;; they are implemented.
 (map! "M-3" '(lambda () (interactive) (insert "#")))
 
-(use-package! helm
+(use-package! ligature
   :config
-  (helm-mode 1))
+  (ligature-set-ligatures 't '("www"))
+  (ligature-set-ligatures 'prog-mode '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "::"
+                                     ":::" ":=" "!!" "!=" "!==" "-}" "----" "-->" "->" "->>"
+                                     "-<" "-<<" "-~" "#{" "#[" "##" "###" "####" "#(" "#?" "#_"
+                                     "#_(" ".-" ".=" ".." "..<" "..." "?=" "??" ";;" "/*" "/**"
+                                     "/=" "/==" "/>" "//" "///" "&&" "||" "||=" "|=" "|>" "^=" "$>"
+                                     "++" "+++" "+>" "=:=" "==" "===" "==>" "=>" "=>>" "<="
+                                     "=<<" "=/=" ">-" ">=" ">=>" ">>" ">>-" ">>=" ">>>" "<*"
+                                     "<*>" "<|" "<|>" "<$" "<$>" "<!--" "<-" "<--" "<->" "<+"
+                                     "<+>" "<=" "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<"
+                                     "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%"))
+  (global-ligature-mode 't))
 
 (use-package! projectile
   :config
-  (setq projectile-completion-system 'helm
+  (setq projectile-completion-system 'default
         projectile-project-search-path '("~/dev" "~/play")))
 
 (use-package! org-roam
-  :ensure t
-  :custom
-  (org-roam-completion-everywhere t)
-  :bind (("C-c n l" . org-roam-buffer-toggle)
-         ("C-c n f" . org-roam-node-find)
-         ("C-c n i" . org-roam-node-insert)
-         :map org-roam-dailies-map
-         ("Y" . org-roam-dailies-capture-yesterday)
-         ("T" . org-roam-dailies-capture-tomorrow))
-  :bind-keymap
-  ("C-c n d" . org-roam-dailies-map)
   :config
   (require 'org-roam-dailies)
   (setq org-roam-directory "~/Library/Mobile Documents/com~apple~CloudDocs/org-roam")
@@ -140,6 +141,7 @@
                                          :time-grid t
                                          :scheduled today)
                                   (:name "Due Today"
+                                         :time-grid t
                                          :deadline today)
                                   (:name "Important"
                                          :tag ("family" "bills" "money")
@@ -162,7 +164,7 @@
           (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src" nil nil)
           (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src" nil nil))))
 
-(use-package typescript-ts-mode
+(use-package! typescript-ts-mode
   :mode (("\\.ts\\'" . typescript-ts-mode)
          ("\\.tsx\\'" . tsx-ts-mode))
   :config
@@ -173,3 +175,25 @@
   (org-crypt-use-before-save-magic)
   (setq org-tags-exclude-from-inheritance (quote ("crypt"))
         org-crypt-key nil))
+
+(use-package! elfeed
+  :init
+  (setq elfeed-db-directory "~/Library/Mobile Documents/com~apple~CloudDocs/.elfeed"
+        pixel-scroll-precision-mode t)
+  :hook
+  (elfeed-show-mode . variable-pitch-mode))
+
+(after! elfeed
+  (setq elfeed-search-filter "@1-months-ago +unread"))
+
+(use-package! elfeed-org
+  :after elfeed
+  :config
+  (setq rmh-elfeed-org-files (list (f-join org-directory "elfeed.org")))
+  (elfeed-org))
+
+(use-package! org-contrib)
+(use-package! ox-confluence)
+(use-package! bug-reference
+  :config
+  (add-hook! 'prog-mode-hook #'bug-reference-mode))
