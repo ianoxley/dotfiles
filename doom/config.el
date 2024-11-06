@@ -2,6 +2,8 @@
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
+(setq user-full-name "Ian Oxley"
+      user-mail-address "ian.oxley@sage.com")
 
 (setq backup-directory-alist '(("." . "~/.config/emacs/backups")))
 
