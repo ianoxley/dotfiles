@@ -7,16 +7,6 @@
 
 (setq backup-directory-alist '(("." . "~/.config/emacs/backups")))
 
-(setq savehist-file "~/.config/emacs/savehist")
-(savehist-mode 1)
-(setq history-length t
-      history-delete-duplicates t
-      savehist-save-minibuffer-history 1
-      savehist-additional-variables
-      '(kill-ring
-        search-ring
-        regexp-search-ring))
-
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
 ;; (setq user-full-name "John Doe"
