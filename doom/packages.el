@@ -8,7 +8,6 @@
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;; (package! some-package)
-(package! dockerfile-mode)
 (package! mermaid-mode)
 (package! ob-mermaid)
 (package! org-roam)
