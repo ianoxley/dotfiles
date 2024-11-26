@@ -46,7 +46,7 @@
 ;; (setq org-directory "~/org/")
 (setq org-directory "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org")
 (add-hook 'org-mode-hook #'bug-reference-mode)
-
+(add-to-list 'org-tags-exclude-from-inheritance "project")
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
@@ -187,3 +187,71 @@
 (use-package! bug-reference
   :config
   (add-hook! 'prog-mode-hook #'bug-reference-mode))
+
+(use-package! vulpea
+  :after org-roam
+  :hook ((org-roam-db-autosync-mode . vulpea-db-autosync-mode))
+  :hook ('find-file-hook #'vulpea-project-update-tag)
+  :hook ('before-save-hook #'vulpea-project-update-tag))
+
+;; Custom vulpea functions from
+;; https://d12frosted.io/posts/2021-01-16-task-management-with-roam-vol5.html
+(defun vulpea-project-p ()
+  "Return non-nil if current buffer has any todo entry.
+
+TODO entries marked as done are ignored, meaning the this
+function returns nil if current buffer contains only completed
+tasks."
+  (org-element-map
+       (org-element-parse-buffer 'headline)
+       'headline
+     (lambda (h)
+       (eq (org-element-property :todo-type h)
+           'todo))
+     nil 'first-match))
+
+(defun vulpea-project-update-tag ()
+      "Update PROJECT tag in the current buffer."
+      (when (and (not (active-minibuffer-window))
+                 (vulpea-buffer-p))
+        (save-excursion
+          (goto-char (point-min))
+          (let* ((tags (vulpea-buffer-tags-get))
+                 (original-tags tags))
+            (if (vulpea-project-p)
+                (setq tags (cons "project" tags))
+              (setq tags (remove "project" tags)))
+
+            ;; cleanup duplicates
+            (setq tags (seq-uniq tags))
+
+            ;; update tags if changed
+            (when (or (seq-difference tags original-tags)
+                      (seq-difference original-tags tags))
+              (apply #'vulpea-buffer-tags-set tags))))))
+
+(defun vulpea-buffer-p ()
+  "Return non-nil if the currently visited buffer is a note."
+  (and buffer-file-name
+       (string-prefix-p
+        (expand-file-name (file-name-as-directory org-roam-directory))
+        (file-name-directory buffer-file-name))))
+
+(defun vulpea-project-files ()
+  "Return a list of note files containing 'project' tag." ;
+  (seq-uniq
+   (seq-map
+    #'car
+    (org-roam-db-query
+     [:select [nodes:file]
+      :from tags
+      :left-join nodes
+      :on (= tags:node-id nodes:id)
+      :where (like tag (quote "%\"project\"%"))]))))
+
+(defun vulpea-agenda-files-update (&rest _)
+  "Update the value of `org-agenda-files'."
+  (setq org-agenda-files (vulpea-project-files)))
+
+(advice-add 'org-agenda :before #'vulpea-agenda-files-update)
+(advice-add 'org-todo-list :before #'vulpea-agenda-files-update)
