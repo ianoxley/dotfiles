@@ -7,6 +7,8 @@
 
 (setq backup-directory-alist '(("." . "~/.config/emacs/backups")))
 
+(setq-default tab-width 2)
+
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
 ;; (setq user-full-name "John Doe"
