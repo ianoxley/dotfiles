@@ -10,6 +10,7 @@
 ;; (package! some-package)
 (package! mermaid-mode)
 (package! ob-mermaid)
+(package! org-auto-tangle)
 (package! org-roam)
 (package! org-roam-ui)
 (package! org-super-agenda)
