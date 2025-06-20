@@ -118,6 +118,12 @@
         org-agenda-span 'day
         org-agenda-start-day nil))
 
+(use-package! org-journal
+  :defer t
+  :config
+  (setq org-journal-dir "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/journal"
+        org-journal-enable-agenda-integration t))
+
 (use-package! org-roam-ui
   :hook (after-init . org-roam-ui-mode)
   :config
