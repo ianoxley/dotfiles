@@ -103,6 +103,12 @@
   (setq projectile-completion-system 'default
         projectile-project-search-path '("~/dev" "~/play")))
 
+(use-package! org-auto-tangle
+  :defer t
+  :hook (org-mode . org-auto-tangle-mode)
+  :config
+  (setq org-auto-tangle-default t))
+
 (use-package! org-roam
   :config
   (require 'org-roam-dailies)
