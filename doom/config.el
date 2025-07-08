@@ -202,6 +202,7 @@
   :config
   (add-hook! 'prog-mode-hook #'bug-reference-mode))
 
-(defun my-projectile-clear-cache ()
+(defun my/projectile-clear-cache ()
   "Remove the projectile-cache-file"
+  (interactive)
   (delete-file projectile-cache-file))
