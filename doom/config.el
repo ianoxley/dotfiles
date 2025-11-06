@@ -196,6 +196,10 @@
   (setq rmh-elfeed-org-files (list (f-join org-directory "elfeed.org")))
   (elfeed-org))
 
+(use-package! evil
+  :config
+  (setq evil-escape-key-sequence "jk"))
+
 (use-package! org-contrib)
 (use-package! ox-confluence)
 (use-package! bug-reference
