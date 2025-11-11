@@ -197,8 +197,7 @@
   (setq rmh-elfeed-org-files (list (f-join org-directory "elfeed.org")))
   (elfeed-org))
 
-(use-package! evil
-  :config
+(after! evil
   (setq evil-escape-key-sequence "jk"))
 
 (use-package! org-contrib)
