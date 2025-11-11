@@ -11,12 +11,10 @@
 (package! mermaid-mode)
 (package! ob-mermaid)
 (package! org-auto-tangle)
-(package! org-roam)
 (package! org-roam-ui)
-(package! org-super-agenda)
-(package! helm)
-(package! ligature)
 (package! org-contrib)
+(package! command-log-mode)
+(package! org-jira)
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
