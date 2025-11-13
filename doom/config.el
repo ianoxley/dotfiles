@@ -207,6 +207,10 @@
   :config
   (add-hook! 'prog-mode-hook #'bug-reference-mode))
 
+(use-package! epg
+  :config
+  (setq epg-pinentry-mode 'loopback))
+
 (defun my/projectile-clear-cache ()
   "Remove the projectile-cache-file"
   (interactive)
