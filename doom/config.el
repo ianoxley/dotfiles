@@ -126,6 +126,10 @@
         org-agenda-span 'day
         org-agenda-start-day nil))
 
+(after! org-agenda
+  (setopt org-todo-keywords
+          '((sequence "STRT(s)" "NEXT(n)" "TODO(t)" "WAIT(w)" "|" "DONE(d)" "CANX(c)"))))
+
 (use-package! org-journal
   :defer t
   :config
