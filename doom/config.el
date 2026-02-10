@@ -203,7 +203,7 @@
   (elfeed-org))
 
 (after! evil
-  (setq evil-escape-key-sequence "jk"))
+  (setopt evil-escape-key-sequence "jk"))
 
 (use-package! org-contrib)
 (use-package! ox-confluence)
