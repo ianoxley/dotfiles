@@ -219,6 +219,12 @@
   :config
   (setq copilot-chat-backend 'curl))
 
+(map!
+ :after prog-mode
+ :map prog-mode-map
+ :localleader
+ "c" #'copilot-chat)
+
 (defun my/projectile-clear-cache ()
   "Remove the projectile-cache-file"
   (interactive)
