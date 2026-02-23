@@ -215,6 +215,10 @@
   :config
   (setq epg-pinentry-mode 'loopback))
 
+(use-package! copilot-chat
+  :config
+  (setq copilot-chat-backend 'curl))
+
 (defun my/projectile-clear-cache ()
   "Remove the projectile-cache-file"
   (interactive)
