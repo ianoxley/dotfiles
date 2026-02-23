@@ -110,34 +110,20 @@ alias tk="tmux kill-session -t"
 alias clear="clear && printf '\e[3J'"
 alias vim=nvim
 
-# mysql
-export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+fpath=(
+  /opt/homebrew/share/zsh/site-functions/
+  $fpath
+)
 
-# fpath=(~/.zsh/functions $fpath)
-# autoload -Uz compinit && compinit
-
-autoload bashcompinit
-bashcompinit
-
-# aws
-source /usr/local/etc/bash_completion.d/aws_bash_completer
-
-# git
-# if [ -e /usr/local/etc/bash_completion.d/git-completion.bash ]; then
-#   zstyle ':completion:*:*:git:*' script /usr/local/etc/bash_completion.d/git-completion.bash
-#   # `compinit` scans $fpath, so do this before calling it.
-# fi
-# source /usr/local/etc/bash_completion.d/git-prompt.sh
+autoload -Uz compinit
+compinit
 
 # grep
 export GREP_OPTIONS='--color=always'
 
 function aws_login() {
-  aws ecr get-login-password | docker login --username AWS --password-stdin ${AWS_ECR_ACCOUNT_ID}.dkr.ecr.${AWS_ECR_ACCOUNT_REGION}.amazonaws.com
+  aws ecr get-login-password | docker login --username AWS --password-stdin 522104923602.dkr.ecr.eu-west-1.amazonaws.com
 }
-
-# 2019-02-15 The file below doens't exist, not sure if it should or not?
-# source /usr/local/etc/bash_completion.d/docker-compose
 
 # npm helpers
 function npm-install-local {
@@ -145,19 +131,11 @@ function npm-install-local {
 }
 
 function realpath() {
-    [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
+  [[ $1 = /* ]] && echo "$1" || echo "$PWD/${1#./}"
 }
 
-# fzf
-if [ -e /usr/local/opt/fzf/shell/completion.zsh ]; then
-  # source /usr/local/opt/fzf/shell/key-bindings.bash
-  source /usr/local/opt/fzf/shell/completion.zsh
-fi
-
-# ag
-if [ -e /usr/local/etc/bash_completion.d/ag.bashcomp.sh ]; then
-  source /usr/local/etc/bash_completion.d/ag.bashcomp.sh
-fi
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 
 # fzf + ag configuration
 if which -s fzf && which -s ag; then
@@ -170,27 +148,16 @@ if which -s fzf && which -s ag; then
   # '
 fi
 
-# Add qmake to the PATH
-# export PATH="/usr/local/opt/qt/bin:$PATH"
-# export PATH="$(brew --prefix qt@5.5)/bin:$PATH"
-
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
-
-# Taskwarrior
-# if [ -e /usr/local/share/zsh/site-functions/_task ]; then
-#   source /usr/local/share/zsh/site-functions/_task
-# fi
 
 # Disable history logging for jrnl
 setopt HIST_IGNORE_SPACE
 alias jrnl=" jrnl"
 
 # vim-gnupg
-GPG_TTY=`tty`
+GPG_TTY=$(tty)
 export GPG_TTY
 export PATH="/usr/local/opt/curl/bin:$PATH"
-
-source "$HOME/.vim/pack/themes/opt/gruvbox/gruvbox_256palette.sh"
 
 # Load secrets.sh from the home directory if it exists
 if [ -e ~/.secrets.sh ]; then
@@ -202,11 +169,11 @@ export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)"
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"                                       # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
 # Override the prompt to replace user@host with random emoji
 emojis=("⚡️" "🔥" "💀" "🐳" "🤯" "🪐" "🙈" "🦄" "🌈" "🧲" "🚀" "💡" "🎉" "🔑" "🚦" "🌙" "📡")
-RAND_EMOJI_N=$(( $RANDOM % ${#emojis[@]} + 1))
+RAND_EMOJI_N=$(($RANDOM % ${#emojis[@]} + 1))
 PROMPT="╭─${emojis[$RAND_EMOJI_N]} ${current_dir}${rvm_ruby}${vcs_branch}${venv_prompt}
 ╰─%B${user_symbol}%b "
