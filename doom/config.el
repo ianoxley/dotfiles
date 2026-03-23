@@ -217,7 +217,8 @@
 
 (use-package! copilot-chat
   :config
-  (setq copilot-chat-backend 'curl))
+  (setq copilot-chat-backend 'curl
+        copilot-chat-default-model "claude-sonnet-4.6"))
 
 (map!
  :after prog-mode
