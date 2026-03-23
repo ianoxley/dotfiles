@@ -220,6 +220,25 @@
   (setq copilot-chat-backend 'curl
         copilot-chat-default-model "claude-sonnet-4.6"))
 
+(use-package! js
+  :custom
+  (js-indent-level 2))
+
+(use-package! css-mode
+  :custom
+  (css-indent-offset 2))
+
+(use-package! web-mode
+  :custom
+  (web-mode-markup-indent-offset 2)
+  (web-mode-code-indent-offset 2)
+  (web-mode-css-indent-offset 2)
+  (web-mode-attr-indent-offset 2))
+
+(use-package! sh-script
+  :custom
+  (sh-basic-offset 2))
+
 (map!
  :after prog-mode
  :map prog-mode-map
