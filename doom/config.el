@@ -120,14 +120,6 @@
   (org-roam-db-autosync-mode)
   (org-roam-setup))
 
-(use-package! org-agenda
-  :config
-  (setq org-agenda-skip-scheduled-if-done t
-        org-agenda-skip-deadline-if-done t
-        org-agenda-skip-scheduled-if-deadline-is-shown t
-        org-agenda-span 'day
-        org-agenda-start-day nil))
-
 (after! org-agenda
   (setopt org-todo-keywords
           '((sequence "STRT(s)" "NEXT(n)" "TODO(t)" "WAIT(w)" "|" "DONE(d)" "CANX(c)"))))
@@ -149,21 +141,41 @@
 (use-package! org-super-agenda
   :after org-agenda
   :init
-  (setq org-super-agenda-groups '((:name "Today"
-                                         :time-grid t
-                                         :scheduled today)
-                                  (:name "Due Today"
-                                         :time-grid t
-                                         :deadline today)
-                                  (:name "Important"
-                                         :tag ("family" "bills" "money")
-                                         :priority "A")
-                                  (:name "Overdue"
-                                         :deadline past)
-                                  (:name "Due soon"
-                                         :deadline future)
-                                  (:name "Goals"
-                                         :tag "goals")))
+  (setq org-agenda-skip-scheduled-if-done t
+        org-agenda-skip-deadline-if-done t
+        org-agenda-include-deadlines t
+        org-agenda-block-separator nil
+        org-agenda-compact-blocks t
+        org-agenda-start-day nil ;; i.e. today
+        org-agenda-span 1
+        org-agenda-start-on-weekday nil)
+  (setq org-agenda-custom-commands
+        '(("c" "Super view"
+           ((agenda "" ((org-agenda-overriding-header "")
+                        (org-super-agenda-groups
+                         '((:name "Today"
+                            :time-grid t
+                            :date today
+                            :order 1)))))
+            (alltodo "" ((org-agenda-overriding-header "")
+                         (org-super-agenda-groups
+                          '((:log t)
+                            (:name "In Progress"
+                             :todo "STRT"
+                             :order 1)
+                            (:name "Next"
+                             :todo "NEXT"
+                             :order 2)
+                            (:name "Due Today"
+                             :deadline today
+                             :order 3)
+                            (:name "Scheduled Soon"
+                             :scheduled future
+                             :order 8)
+                            (:name "Overdue"
+                             :deadline past
+                             :order 7)
+                            (:discard (:not (:todo "TODO")))))))))))
   :bind (:map org-super-agenda-header-map
               ("j" . #'org-agenda-next-line)
               ("k" . #'org-agenda-previous-line))
