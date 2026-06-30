@@ -230,6 +230,10 @@
   (setq epg-pinentry-mode 'loopback))
 
 (use-package! copilot-chat
+  :requires (polymode mcp)
+  :config
+  (setq gh-copilot-chat-backend 'curl
+        gh-copilot-chat-default-model "claude-sonnet-4.6"))
   :config
   (setq copilot-chat-backend 'curl
         copilot-chat-default-model "claude-sonnet-4.6"))
@@ -257,7 +261,7 @@
  :after prog-mode
  :map prog-mode-map
  :localleader
- "c" #'copilot-chat)
+ "c" #'gh-copilot-chat)
 
 (defun my/projectile-clear-cache ()
   "Remove the projectile-cache-file"
