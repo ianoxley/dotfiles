@@ -257,6 +257,9 @@
   :custom
   (sh-basic-offset 2))
 
+(after! vterm
+  (setq vterm-max-scrollback 10000))
+
 (map!
  :after prog-mode
  :map prog-mode-map
